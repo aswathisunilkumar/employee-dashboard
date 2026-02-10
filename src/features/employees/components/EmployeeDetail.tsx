@@ -1,15 +1,11 @@
 import type { Employee } from '../types/employee';
-import { LeaveChart } from './LeaveChart';
+import LeaveChart from './LeaveChart';
 
 interface EmployeeDetailProps {
     employee: Employee;
 }
 
-/**
- * Pure presentational component — displays all employee fields.
- * No data fetching, no routing logic. Just renders what it receives.
- */
-export function EmployeeDetail({ employee }: EmployeeDetailProps) {
+export const EmployeeDetail = ({ employee }: EmployeeDetailProps) => {
     return (
         <div>
             <h2 className="text-2xl font-bold text-gray-900">

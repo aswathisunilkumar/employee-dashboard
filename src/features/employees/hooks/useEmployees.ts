@@ -2,10 +2,7 @@ import { useEffect, useState } from 'react';
 import type { Employee } from '../types/employee';
 import { fetchEmployees } from '../data/employeeApi';
 
-/**
- * Custom hook that owns the employee data-fetching lifecycle.
- * Components call this hook instead of touching the API directly.
- */
+/** Hook to fetch the full list of employees. */
 export function useEmployees() {
     const [employees, setEmployees] = useState<Employee[]>([]);
     const [isLoading, setIsLoading] = useState(true);

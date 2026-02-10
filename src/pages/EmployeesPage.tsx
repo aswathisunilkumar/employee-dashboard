@@ -1,14 +1,17 @@
 import { useEmployees } from '../features/employees/hooks/useEmployees';
 import { useEmployeeFilters } from '../features/employees/hooks/useEmployeeFilters';
-import { EmployeeList } from '../features/employees/components/EmployeeList';
-import { EmployeeFilters } from '../features/employees/components/EmployeeFilters';
+import EmployeeList from '../features/employees/components/EmployeeList';
+import EmployeeFilters from '../features/employees/components/EmployeeFilters';
+import { LoadingSpinner } from '../components/LoadingSpinner';
+import { ErrorMessage } from '../components/ErrorMessage';
 
-/**
- * Page component for the employee list view.
- * Pages are thin orchestrators — they compose hooks and feature components.
- * All data logic lives in hooks; all rendering lives in feature components.
- */
-export function EmployeesPage() {
+import { useEffect } from 'react';
+
+export const EmployeesPage = () => {
+    useEffect(() => {
+        document.title = 'Employee Dashboard';
+    }, []);
+
     const { employees, isLoading, error } = useEmployees();
     const {
         filteredEmployees,
@@ -23,12 +26,20 @@ export function EmployeesPage() {
         toggleSortOrder,
     } = useEmployeeFilters(employees);
 
-    if (isLoading) return <p>Loading employees…</p>;
-    if (error) return <p>Error: {error}</p>;
+    if (isLoading) return <LoadingSpinner message="Loading employees…" />;
+    if (error) return <ErrorMessage message={error} />;
 
     return (
         <div>
-            <h1>Employee Dashboard</h1>
+            <div className="mb-6">
+                <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+                    Employee Dashboard
+                </h1>
+                <p className="mt-1 text-sm text-gray-500">
+                    Manage and browse your team members
+                </p>
+            </div>
+
             <EmployeeFilters
                 searchQuery={searchQuery}
                 onSearchChange={setSearchQuery}
@@ -40,7 +51,13 @@ export function EmployeesPage() {
                 sortOrder={sortOrder}
                 onToggleSortOrder={toggleSortOrder}
             />
-            <p>{filteredEmployees.length} employee(s) found</p>
+
+            <div className="mt-4 flex items-center justify-between">
+                <p className="text-sm font-medium text-gray-500">
+                    {filteredEmployees.length} employee(s) found
+                </p>
+            </div>
+
             <EmployeeList employees={filteredEmployees} />
         </div>
     );

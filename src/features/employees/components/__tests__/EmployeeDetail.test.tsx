@@ -6,7 +6,8 @@ import type { Employee } from '../../types/employee';
 // Mock LeaveChart — it uses recharts which needs a real DOM canvas.
 // We only care that EmployeeDetail passes the right data through.
 vi.mock('../LeaveChart', () => ({
-    LeaveChart: ({ leaveBalance }: { leaveBalance: Employee['leaveBalance'] }) => (
+    __esModule: true,
+    default: ({ leaveBalance }: { leaveBalance: Employee['leaveBalance'] }) => (
         <div data-testid="leave-chart">
             {leaveBalance.annual}/{leaveBalance.sick}/{leaveBalance.used}
         </div>

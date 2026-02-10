@@ -2,8 +2,8 @@
     {
         "id": 1,
         "firstName": "Priya",
-        "lastName": "Sharma",
-        "email": "priya.sharma@company.com",
+        "lastName": "S",
+        "email": "priya.s@company.com",
         "department": "Engineering",
         "role": "Senior Frontend Developer",
         "joinDate": "2021-03-15",
@@ -22,8 +22,8 @@
     {
         "id": 2,
         "firstName": "Arjun",
-        "lastName": "Patel",
-        "email": "arjun.patel@company.com",
+        "lastName": "P",
+        "email": "arjun.p@company.com",
         "department": "Engineering",
         "role": "Backend Developer",
         "joinDate": "2022-07-01",
@@ -41,8 +41,8 @@
     {
         "id": 3,
         "firstName": "Meera",
-        "lastName": "Nair",
-        "email": "meera.nair@company.com",
+        "lastName": "N",
+        "email": "meera.n@company.com",
         "department": "Design",
         "role": "UX Designer",
         "joinDate": "2020-11-20",
@@ -60,8 +60,8 @@
     {
         "id": 4,
         "firstName": "Ravi",
-        "lastName": "Kumar",
-        "email": "ravi.kumar@company.com",
+        "lastName": "K",
+        "email": "ravi.k@company.com",
         "department": "Product",
         "role": "Product Manager",
         "joinDate": "2019-05-10",
@@ -79,8 +79,8 @@
     {
         "id": 5,
         "firstName": "Ananya",
-        "lastName": "Gupta",
-        "email": "ananya.gupta@company.com",
+        "lastName": "G",
+        "email": "ananya.g@company.com",
         "department": "Engineering",
         "role": "DevOps Engineer",
         "joinDate": "2023-01-09",
@@ -99,8 +99,8 @@
     {
         "id": 6,
         "firstName": "Vikram",
-        "lastName": "Singh",
-        "email": "vikram.singh@company.com",
+        "lastName": "S",
+        "email": "vikram.s@company.com",
         "department": "QA",
         "role": "QA Lead",
         "joinDate": "2021-09-25",
@@ -112,6 +112,26 @@
         "leaveBalance": {
             "annual": 18,
             "sick": 10,
+            "used": 7
+        }
+    },
+    {
+        "id": 7,
+        "firstName": "Sara",
+        "lastName": "G",
+        "email": "sara.g@company.com",
+        "department": "Engineering",
+        "role": "Senior Frontend Developer",
+        "joinDate": "2021-09-15",
+        "skills": [
+            "React",
+            "TypeScript",
+            "CSS",
+            "GraphQL"
+        ],
+        "leaveBalance": {
+            "annual": 18,
+            "sick": 8,
             "used": 7
         }
     }

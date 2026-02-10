@@ -13,16 +13,8 @@ interface EmployeeFiltersProps {
     onToggleSortOrder: () => void;
 }
 
-/**
- * Pure presentational component for filter controls.
- * All state lives in the parent hook — this just renders inputs and calls callbacks.
- *
- * Wrapped in React.memo because:
- * - It re-renders on every keystroke in the search input (expected).
- * - But it should NOT re-render when only filteredEmployees changes
- *   downstream. memo + stable callback refs from the hook prevent that.
- */
-export const EmployeeFilters = memo(function EmployeeFilters({
+/** Filter controls for the employee list. */
+const EmployeeFilters = ({
     searchQuery,
     onSearchChange,
     department,
@@ -32,14 +24,15 @@ export const EmployeeFilters = memo(function EmployeeFilters({
     onSortFieldChange,
     sortOrder,
     onToggleSortOrder,
-}: EmployeeFiltersProps) {
+}: EmployeeFiltersProps) => {
     const inputClasses =
-        'rounded border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none';
+        'rounded border border-gray-300 px-3 py-2 text-sm';
 
     return (
-        <div className="flex flex-wrap items-center gap-3 rounded-lg border border-gray-200 bg-gray-50 p-4">
+        <div className="flex flex-wrap items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
             <input
                 type="text"
+                aria-label="Search employees"
                 placeholder="Search by name or role…"
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
@@ -47,6 +40,7 @@ export const EmployeeFilters = memo(function EmployeeFilters({
             />
 
             <select
+                aria-label="Filter by department"
                 value={department}
                 onChange={(e) => onDepartmentChange(e.target.value)}
                 className={inputClasses}
@@ -60,6 +54,7 @@ export const EmployeeFilters = memo(function EmployeeFilters({
             </select>
 
             <select
+                aria-label="Sort by"
                 value={sortField}
                 onChange={(e) => onSortFieldChange(e.target.value as SortField)}
                 className={inputClasses}
@@ -70,12 +65,15 @@ export const EmployeeFilters = memo(function EmployeeFilters({
             </select>
 
             <button
+                aria-label="Toggle sort order"
                 onClick={onToggleSortOrder}
-                className="rounded border border-gray-300 bg-white px-3 py-2 text-sm hover:bg-gray-100"
+                className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium transition-colors hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-600"
             >
                 {sortOrder === 'asc' ? '↑ Asc' : '↓ Desc'}
             </button>
         </div>
     );
-});
+}
+
+export default memo(EmployeeFilters);
 
