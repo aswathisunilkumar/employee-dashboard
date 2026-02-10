@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+
 import { EmployeeDetail } from '../EmployeeDetail';
 import type { Employee } from '../../types/employee';
 
 // Mock LeaveChart — it uses recharts which needs a real DOM canvas.
 // We only care that EmployeeDetail passes the right data through.
-vi.mock('../LeaveChart', () => ({
+jest.mock('../LeaveChart', () => ({
   __esModule: true,
   default: ({ leaveBalance }: { leaveBalance: Employee['leaveBalance'] }) => (
     <div data-testid="leave-chart">

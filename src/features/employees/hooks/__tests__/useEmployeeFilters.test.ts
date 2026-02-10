@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+
 import { useEmployeeFilters } from '../useEmployeeFilters';
 import type { Employee } from '../../types/employee';
 

@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 import { fetchEmployees, fetchEmployeeById } from '../employeeApi';
 
 describe('employeeApi', () => {

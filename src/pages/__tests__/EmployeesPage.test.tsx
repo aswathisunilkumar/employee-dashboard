@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi } from 'vitest';
+
 import { MemoryRouter } from 'react-router-dom';
 import { EmployeesPage } from '../EmployeesPage';
 import type { Employee } from '../../features/employees/types/employee';
@@ -43,7 +43,7 @@ const mockEmployees: Employee[] = [
 ];
 
 // ── Mock the data-fetching hook ─────────────────────────────
-vi.mock('../../features/employees/hooks/useEmployees', () => ({
+jest.mock('../../features/employees/hooks/useEmployees', () => ({
   useEmployees: () => ({
     employees: mockEmployees,
     isLoading: false,
