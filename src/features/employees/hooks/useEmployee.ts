@@ -2,19 +2,25 @@ import { useEffect, useState } from 'react';
 import type { Employee } from '../types/employee';
 import { fetchEmployeeById } from '../data/employeeApi';
 
-/**
- * Hook to fetch a single employee by ID.
- * Mirrors useEmployees but for the detail view.
- */
+/**  Hook to fetch a single employee by ID */
 export function useEmployee(id: number) {
   const [employee, setEmployee] = useState<Employee | undefined>();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [prevId, setPrevId] = useState(id);
+
+  // reset state during render if ID changes
+  if (id !== prevId) {
+    setPrevId(id);
+    setIsLoading(true);
+    setEmployee(undefined);
+    setError(null);
+  }
 
   useEffect(() => {
     let cancelled = false;
 
-    setIsLoading(true);
+    // Fetch data
     fetchEmployeeById(id)
       .then((data) => {
         if (!cancelled) {
