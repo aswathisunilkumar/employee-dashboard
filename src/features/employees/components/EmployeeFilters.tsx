@@ -33,18 +33,23 @@ export const EmployeeFilters = memo(function EmployeeFilters({
     sortOrder,
     onToggleSortOrder,
 }: EmployeeFiltersProps) {
+    const inputClasses =
+        'rounded border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none';
+
     return (
-        <div>
+        <div className="flex flex-wrap items-center gap-3 rounded-lg border border-gray-200 bg-gray-50 p-4">
             <input
                 type="text"
                 placeholder="Search by name or role…"
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
+                className={`${inputClasses} min-w-[180px] flex-1`}
             />
 
             <select
                 value={department}
                 onChange={(e) => onDepartmentChange(e.target.value)}
+                className={inputClasses}
             >
                 <option value="">All Departments</option>
                 {departments.map((dept) => (
@@ -57,13 +62,17 @@ export const EmployeeFilters = memo(function EmployeeFilters({
             <select
                 value={sortField}
                 onChange={(e) => onSortFieldChange(e.target.value as SortField)}
+                className={inputClasses}
             >
                 <option value="name">Sort by Name</option>
                 <option value="department">Sort by Department</option>
                 <option value="role">Sort by Role</option>
             </select>
 
-            <button onClick={onToggleSortOrder}>
+            <button
+                onClick={onToggleSortOrder}
+                className="rounded border border-gray-300 bg-white px-3 py-2 text-sm hover:bg-gray-100"
+            >
                 {sortOrder === 'asc' ? '↑ Asc' : '↓ Desc'}
             </button>
         </div>

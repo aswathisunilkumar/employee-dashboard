@@ -45,7 +45,7 @@ export const LeaveChart = memo(function LeaveChart({
 
     return (
         <div>
-            <h3>Leave Overview</h3>
+            <h3 className="mb-4 text-lg font-semibold text-gray-800">Leave Overview</h3>
             <ResponsiveContainer width="100%" height={250}>
                 <BarChart data={chartData}>
                     <XAxis dataKey="label" />

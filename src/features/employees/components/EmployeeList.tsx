@@ -18,19 +18,25 @@ export const EmployeeList = memo(function EmployeeList({
     employees,
 }: EmployeeListProps) {
     if (employees.length === 0) {
-        return <p>No employees found.</p>;
+        return <p className="py-8 text-center text-gray-400">No employees found.</p>;
     }
 
     return (
-        <ul>
+        <ul className="mt-4 space-y-2">
             {employees.map((emp) => (
-                <li key={emp.id}>
-                    <Link to={`/employees/${emp.id}`}>
-                        <strong>
-                            {emp.firstName} {emp.lastName}
-                        </strong>
-                    </Link>{' '}
-                    — {emp.role}, {emp.department}
+                <li
+                    key={emp.id}
+                    className="rounded-lg border border-gray-200 px-4 py-3 hover:bg-gray-50"
+                >
+                    <Link
+                        to={`/employees/${emp.id}`}
+                        className="font-medium text-indigo-600 hover:text-indigo-800"
+                    >
+                        {emp.firstName} {emp.lastName}
+                    </Link>
+                    <span className="ml-2 text-sm text-gray-500">
+                        — {emp.role}, {emp.department}
+                    </span>
                 </li>
             ))}
         </ul>

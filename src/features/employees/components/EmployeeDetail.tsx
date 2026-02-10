@@ -12,31 +12,33 @@ interface EmployeeDetailProps {
 export function EmployeeDetail({ employee }: EmployeeDetailProps) {
     return (
         <div>
-            <h2>
+            <h2 className="text-2xl font-bold text-gray-900">
                 {employee.firstName} {employee.lastName}
             </h2>
 
-            <dl>
-                <dt>ID</dt>
-                <dd>{employee.id}</dd>
+            <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
+                <dt className="font-medium text-gray-500">ID</dt>
+                <dd className="text-gray-900">{employee.id}</dd>
 
-                <dt>Email</dt>
-                <dd>{employee.email}</dd>
+                <dt className="font-medium text-gray-500">Email</dt>
+                <dd className="text-gray-900">{employee.email}</dd>
 
-                <dt>Role</dt>
-                <dd>{employee.role}</dd>
+                <dt className="font-medium text-gray-500">Role</dt>
+                <dd className="text-gray-900">{employee.role}</dd>
 
-                <dt>Department</dt>
-                <dd>{employee.department}</dd>
+                <dt className="font-medium text-gray-500">Department</dt>
+                <dd className="text-gray-900">{employee.department}</dd>
 
-                <dt>Join Date</dt>
-                <dd>{employee.joinDate}</dd>
+                <dt className="font-medium text-gray-500">Join Date</dt>
+                <dd className="text-gray-900">{employee.joinDate}</dd>
 
-                <dt>Skills</dt>
-                <dd>{employee.skills.join(', ')}</dd>
+                <dt className="font-medium text-gray-500">Skills</dt>
+                <dd className="text-gray-900">{employee.skills.join(', ')}</dd>
             </dl>
 
-            <LeaveChart leaveBalance={employee.leaveBalance} />
+            <div className="mt-6 border-t border-gray-200 pt-6">
+                <LeaveChart leaveBalance={employee.leaveBalance} />
+            </div>
         </div>
     );
 }
