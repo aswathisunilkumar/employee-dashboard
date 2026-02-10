@@ -5,9 +5,9 @@
 
 /** Generic async-data state shape, used by any data-fetching hook. */
 export interface AsyncState<T> {
-    data: T;
-    isLoading: boolean;
-    error: string | null;
+  data: T;
+  isLoading: boolean;
+  error: string | null;
 }
 
 /** Reusable sort direction. */
