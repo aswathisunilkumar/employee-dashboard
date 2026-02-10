@@ -1,4 +1,5 @@
 import type { Employee } from '../types/employee';
+import { LeaveChart } from './LeaveChart';
 
 interface EmployeeDetailProps {
     employee: Employee;
@@ -33,16 +34,10 @@ export function EmployeeDetail({ employee }: EmployeeDetailProps) {
 
                 <dt>Skills</dt>
                 <dd>{employee.skills.join(', ')}</dd>
-
-                <dt>Leave — Annual</dt>
-                <dd>{employee.leaveBalance.annual} days</dd>
-
-                <dt>Leave — Sick</dt>
-                <dd>{employee.leaveBalance.sick} days</dd>
-
-                <dt>Leave — Used</dt>
-                <dd>{employee.leaveBalance.used} days</dd>
             </dl>
+
+            <LeaveChart leaveBalance={employee.leaveBalance} />
         </div>
     );
 }
+

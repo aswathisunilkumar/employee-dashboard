@@ -1,25 +1,21 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import type { Employee } from '../types/employee';
 
 export type SortField = 'name' | 'department' | 'role';
 export type SortOrder = 'asc' | 'desc';
 
-interface FilterState {
-    searchQuery: string;
-    department: string;
-    sortField: SortField;
-    sortOrder: SortOrder;
-}
-
 /**
  * Hook that derives a filtered + sorted employee list from the source array.
  *
- * Key design decisions:
+ * Performance notes:
  * - searchQuery, department, sortField, sortOrder → real state (user inputs).
  * - filteredEmployees → derived via useMemo, NOT stored in state.
  *   This avoids duplication and keeps the source of truth single.
  * - useMemo recomputes only when employees or a filter value changes,
  *   so the list component skips unnecessary re-renders.
+ * - toggleSortOrder is wrapped in useCallback so memoized child components
+ *   (EmployeeFilters) receive a stable function reference.
+ * - The useState setters (setSearchQuery, etc.) are already stable by React guarantee.
  */
 export function useEmployeeFilters(employees: Employee[]) {
     const [searchQuery, setSearchQuery] = useState('');
@@ -32,6 +28,12 @@ export function useEmployeeFilters(employees: Employee[]) {
         () => [...new Set(employees.map((e) => e.department))].sort(),
         [employees],
     );
+
+    // Stable toggle handler — useCallback ensures the reference doesn't change
+    // between renders, preventing unnecessary re-renders of memoized children.
+    const toggleSortOrder = useCallback(() => {
+        setSortOrder((prev) => (prev === 'asc' ? 'desc' : 'asc'));
+    }, []);
 
     // Derive the filtered + sorted list — never stored as separate state
     const filteredEmployees = useMemo(() => {
@@ -87,6 +89,7 @@ export function useEmployeeFilters(employees: Employee[]) {
         sortField,
         setSortField,
         sortOrder,
-        setSortOrder,
+        toggleSortOrder,
     };
 }
+

@@ -20,7 +20,7 @@ export function EmployeesPage() {
         sortField,
         setSortField,
         sortOrder,
-        setSortOrder,
+        toggleSortOrder,
     } = useEmployeeFilters(employees);
 
     if (isLoading) return <p>Loading employees…</p>;
@@ -38,10 +38,11 @@ export function EmployeesPage() {
                 sortField={sortField}
                 onSortFieldChange={setSortField}
                 sortOrder={sortOrder}
-                onSortOrderChange={setSortOrder}
+                onToggleSortOrder={toggleSortOrder}
             />
             <p>{filteredEmployees.length} employee(s) found</p>
             <EmployeeList employees={filteredEmployees} />
         </div>
     );
 }
+

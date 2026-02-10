@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import type { Employee } from '../types/employee';
 
@@ -7,9 +8,15 @@ interface EmployeeListProps {
 
 /**
  * Pure presentational component — renders a list with navigable links.
- * Each employee name links to /employees/:id for the detail view.
+ *
+ * Wrapped in React.memo because:
+ * - The parent (EmployeesPage) re-renders on every filter state change.
+ * - If the derived filteredEmployees array hasn't changed (same reference
+ *   from useMemo), this component skips re-rendering entirely.
  */
-export function EmployeeList({ employees }: EmployeeListProps) {
+export const EmployeeList = memo(function EmployeeList({
+    employees,
+}: EmployeeListProps) {
     if (employees.length === 0) {
         return <p>No employees found.</p>;
     }
@@ -28,4 +35,5 @@ export function EmployeeList({ employees }: EmployeeListProps) {
             ))}
         </ul>
     );
-}
+});
+

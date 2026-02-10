@@ -1,4 +1,5 @@
-import type { SortField, SortOrder } from '../hooks/useEmployeeFilters';
+import { memo } from 'react';
+import type { SortField } from '../hooks/useEmployeeFilters';
 
 interface EmployeeFiltersProps {
     searchQuery: string;
@@ -8,15 +9,20 @@ interface EmployeeFiltersProps {
     departments: string[];
     sortField: SortField;
     onSortFieldChange: (field: SortField) => void;
-    sortOrder: SortOrder;
-    onSortOrderChange: (order: SortOrder) => void;
+    sortOrder: 'asc' | 'desc';
+    onToggleSortOrder: () => void;
 }
 
 /**
  * Pure presentational component for filter controls.
  * All state lives in the parent hook — this just renders inputs and calls callbacks.
+ *
+ * Wrapped in React.memo because:
+ * - It re-renders on every keystroke in the search input (expected).
+ * - But it should NOT re-render when only filteredEmployees changes
+ *   downstream. memo + stable callback refs from the hook prevent that.
  */
-export function EmployeeFilters({
+export const EmployeeFilters = memo(function EmployeeFilters({
     searchQuery,
     onSearchChange,
     department,
@@ -25,7 +31,7 @@ export function EmployeeFilters({
     sortField,
     onSortFieldChange,
     sortOrder,
-    onSortOrderChange,
+    onToggleSortOrder,
 }: EmployeeFiltersProps) {
     return (
         <div>
@@ -57,11 +63,10 @@ export function EmployeeFilters({
                 <option value="role">Sort by Role</option>
             </select>
 
-            <button
-                onClick={() => onSortOrderChange(sortOrder === 'asc' ? 'desc' : 'asc')}
-            >
+            <button onClick={onToggleSortOrder}>
                 {sortOrder === 'asc' ? '↑ Asc' : '↓ Desc'}
             </button>
         </div>
     );
-}
+});
+
