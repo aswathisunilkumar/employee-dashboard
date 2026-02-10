@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import type { Employee } from '../types/employee';
 
 interface EmployeeListProps {
@@ -5,8 +6,8 @@ interface EmployeeListProps {
 }
 
 /**
- * Pure presentational component — receives data via props, renders a list.
- * No data-fetching, no side effects, easy to test and reason about.
+ * Pure presentational component — renders a list with navigable links.
+ * Each employee name links to /employees/:id for the detail view.
  */
 export function EmployeeList({ employees }: EmployeeListProps) {
     if (employees.length === 0) {
@@ -17,9 +18,11 @@ export function EmployeeList({ employees }: EmployeeListProps) {
         <ul>
             {employees.map((emp) => (
                 <li key={emp.id}>
-                    <strong>
-                        {emp.firstName} {emp.lastName}
-                    </strong>{' '}
+                    <Link to={`/employees/${emp.id}`}>
+                        <strong>
+                            {emp.firstName} {emp.lastName}
+                        </strong>
+                    </Link>{' '}
                     — {emp.role}, {emp.department}
                 </li>
             ))}

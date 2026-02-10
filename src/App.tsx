@@ -1,17 +1,18 @@
-import { useEmployees } from './features/employees/hooks/useEmployees';
-import { EmployeeList } from './features/employees/components/EmployeeList';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { EmployeesPage } from './pages/EmployeesPage';
+import { EmployeeDetailPage } from './pages/EmployeeDetailPage';
 
+/**
+ * App is now a pure routing shell.
+ * All page logic lives in pages/; all feature logic lives in features/.
+ */
 function App() {
-  const { employees, isLoading, error } = useEmployees();
-
-  if (isLoading) return <p>Loading employees…</p>;
-  if (error) return <p>Error: {error}</p>;
-
   return (
-    <div>
-      <h1>Employee Dashboard</h1>
-      <EmployeeList employees={employees} />
-    </div>
+    <Routes>
+      <Route path="/" element={<EmployeesPage />} />
+      <Route path="/employees/:id" element={<EmployeeDetailPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 
