@@ -25,10 +25,11 @@ const EmployeeFilters = ({
   sortOrder,
   onToggleSortOrder,
 }: EmployeeFiltersProps) => {
-  const inputClasses = 'rounded border border-gray-300 px-3 py-2 text-sm';
+  const inputClasses =
+    'rounded border border-[var(--color-border-light)] px-3 py-2 text-sm';
 
   return (
-    <div className="flex flex-wrap items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+    <div className="flex flex-wrap items-center gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4 shadow-sm">
       <input
         type="text"
         aria-label="Search employees"
@@ -66,7 +67,7 @@ const EmployeeFilters = ({
       <button
         aria-label="Toggle sort order"
         onClick={onToggleSortOrder}
-        className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium transition-colors hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-600"
+        className="rounded-lg border border-[var(--color-border-light)] bg-[var(--color-bg-card)] px-3 py-2 text-sm font-medium transition-colors hover:border-[var(--color-primary-border)] hover:bg-[var(--color-primary-light)] hover:text-[var(--color-primary)]"
       >
         {sortOrder === 'asc' ? '↑ Asc' : '↓ Desc'}
       </button>

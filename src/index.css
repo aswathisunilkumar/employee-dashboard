@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
+@import './theme.css';
 
 body {
   font-family:
@@ -7,12 +8,12 @@ body {
     system-ui,
     -apple-system,
     sans-serif;
-  background-color: #f8fafc;
+  background-color: var(--color-bg-page);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 :focus-visible {
-  outline: 2px solid #4f46e5;
+  outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
 }

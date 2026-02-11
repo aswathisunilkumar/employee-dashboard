@@ -1,0 +1,31 @@
+:root {
+  /* ── Brand / Accent ──────────────────────────────── */
+  --color-primary: #4f46e5;
+  --color-primary-light: #eef2ff;
+  --color-primary-hover: #6366f1;
+  --color-primary-border: #a5b4fc;
+
+  /* ── Text ────────────────────────────────────────── */
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-muted: #9ca3af;
+  --color-text-heading: #1f2937;
+
+  /* ── Surfaces ────────────────────────────────────── */
+  --color-bg-page: #f8fafc;
+  --color-bg-card: #ffffff;
+  --color-bg-muted: #f3f4f6;
+
+  /* ── Borders ─────────────────────────────────────── */
+  --color-border: #e5e7eb;
+  --color-border-light: #d1d5db;
+  --color-border-dashed: #d1d5db;
+
+  /* ── Feedback / Error ────────────────────────────── */
+  --color-error-bg: #fef2f2;
+  --color-error-border: #fecaca;
+  --color-error-text: #991b1b;
+
+  /* ── Focus ───────────────────────────────────────── */
+  --color-focus-ring: var(--color-primary);
+}

@@ -34,7 +34,7 @@ const LeaveChart = ({ leaveBalance }: LeaveChartProps) => {
   return (
     <div role="img" aria-label={chartLabel}>
       <h3
-        className="mb-4 text-lg font-semibold text-gray-800"
+        className="mb-4 text-lg font-semibold text-[var(--color-text-heading)]"
         aria-hidden="true"
       >
         Leave Overview
@@ -44,7 +44,16 @@ const LeaveChart = ({ leaveBalance }: LeaveChartProps) => {
           <XAxis dataKey="label" />
           <YAxis allowDecimals={false} />
           <Tooltip />
-          <Bar dataKey="days" fill="#4f46e5" />
+          <Bar
+            dataKey="days"
+            fill={
+              typeof window !== 'undefined'
+                ? getComputedStyle(document.documentElement)
+                    .getPropertyValue('--color-primary')
+                    .trim() || '#4f46e5'
+                : '#4f46e5'
+            }
+          />
         </BarChart>
       </ResponsiveContainer>
     </div>

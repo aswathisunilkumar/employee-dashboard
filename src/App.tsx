@@ -7,7 +7,7 @@ const App = () => {
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-white focus:text-indigo-600"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-[var(--color-bg-card)] focus:text-[var(--color-primary)]"
       >
         Skip to main content
       </a>

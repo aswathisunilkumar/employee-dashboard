@@ -22,8 +22,8 @@ export const EmployeeDetailPage = () => {
   if (error) return <ErrorMessage message={error} />;
   if (!employee)
     return (
-      <div className="rounded-lg border border-dashed border-gray-300 py-12 text-center">
-        <p className="text-gray-400">Employee not found.</p>
+      <div className="rounded-lg border border-dashed border-[var(--color-border-dashed)] py-12 text-center">
+        <p className="text-[var(--color-text-muted)]">Employee not found.</p>
       </div>
     );
 
@@ -31,11 +31,11 @@ export const EmployeeDetailPage = () => {
     <div>
       <Link
         to="/"
-        className="mb-6 inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-600 transition-colors hover:bg-indigo-50 hover:text-indigo-600"
+        className="mb-6 inline-flex items-center gap-1 rounded-full bg-[var(--color-bg-muted)] px-3 py-1.5 text-sm font-medium text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-primary-light)] hover:text-[var(--color-primary)]"
       >
         ← Back to list
       </Link>
-      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+      <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-6 shadow-sm sm:p-8">
         <EmployeeDetail employee={employee} />
       </div>
     </div>

@@ -8,10 +8,10 @@ export const LoadingSpinner = ({
   return (
     <div
       role="status"
-      className="flex min-h-[50vh] flex-col items-center justify-center gap-3 text-gray-500"
+      className="flex min-h-[50vh] flex-col items-center justify-center gap-3 text-[var(--color-text-secondary)]"
     >
       <svg
-        className="h-8 w-8 animate-spin text-indigo-500"
+        className="h-8 w-8 animate-spin text-[var(--color-primary)]"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

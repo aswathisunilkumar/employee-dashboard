@@ -32,10 +32,10 @@ export const EmployeesPage = () => {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+        <h1 className="text-3xl font-bold tracking-tight text-[var(--color-text-primary)]">
           Employee Dashboard
         </h1>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-[var(--color-text-secondary)]">
           Manage and browse your team members
         </p>
       </div>
@@ -53,7 +53,7 @@ export const EmployeesPage = () => {
       />
 
       <div className="mt-4 flex items-center justify-between">
-        <p className="text-sm font-medium text-gray-500">
+        <p className="text-sm font-medium text-[var(--color-text-secondary)]">
           {filteredEmployees.length} employee(s) found
         </p>
       </div>
