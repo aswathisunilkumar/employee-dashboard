@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 import { MemoryRouter } from 'react-router-dom';
-import EmployeeList from '../EmployeeList';
+import { EmployeeList } from '../EmployeeList';
 import type { Employee } from '../../types/employee';
 
 /** Wrap component in MemoryRouter since EmployeeList renders <Link>. */

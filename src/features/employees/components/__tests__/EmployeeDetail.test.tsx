@@ -3,11 +3,13 @@ import { render, screen } from '@testing-library/react';
 import { EmployeeDetail } from '../EmployeeDetail';
 import type { Employee } from '../../types/employee';
 
-// Mock LeaveChart — it uses recharts which needs a real DOM canvas.
-// We only care that EmployeeDetail passes the right data through.
 jest.mock('../LeaveChart', () => ({
   __esModule: true,
-  default: ({ leaveBalance }: { leaveBalance: Employee['leaveBalance'] }) => (
+  LeaveChart: ({
+    leaveBalance,
+  }: {
+    leaveBalance: Employee['leaveBalance'];
+  }) => (
     <div data-testid="leave-chart">
       {leaveBalance.annual}/{leaveBalance.sick}/{leaveBalance.used}
     </div>
@@ -41,7 +43,7 @@ describe('EmployeeDetail', () => {
     expect(screen.getByText('priya@company.com')).toBeInTheDocument();
     expect(screen.getByText('Senior Frontend Developer')).toBeInTheDocument();
     expect(screen.getByText('Engineering')).toBeInTheDocument();
-    expect(screen.getByText('2021-03-15')).toBeInTheDocument();
+    expect(screen.getByText('March 15, 2021')).toBeInTheDocument();
     expect(screen.getByText('42')).toBeInTheDocument();
   });
 

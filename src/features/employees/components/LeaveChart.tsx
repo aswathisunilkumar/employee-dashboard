@@ -14,7 +14,7 @@ interface LeaveChartProps {
 }
 
 /** Visualizes leave balance using a bar chart. */
-const LeaveChart = ({ leaveBalance }: LeaveChartProps) => {
+export const LeaveChart = memo(({ leaveBalance }: LeaveChartProps) => {
   // Format data for the chart
   const chartData = useMemo(
     () => [
@@ -44,20 +44,9 @@ const LeaveChart = ({ leaveBalance }: LeaveChartProps) => {
           <XAxis dataKey="label" />
           <YAxis allowDecimals={false} />
           <Tooltip />
-          <Bar
-            dataKey="days"
-            fill={
-              typeof window !== 'undefined'
-                ? getComputedStyle(document.documentElement)
-                    .getPropertyValue('--color-primary')
-                    .trim() || '#4f46e5'
-                : '#4f46e5'
-            }
-          />
+          <Bar dataKey="days" fill="var(--color-primary)" />
         </BarChart>
       </ResponsiveContainer>
     </div>
   );
-};
-
-export default memo(LeaveChart);
+});

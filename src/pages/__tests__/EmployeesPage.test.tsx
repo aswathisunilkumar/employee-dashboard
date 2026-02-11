@@ -66,7 +66,7 @@ describe('EmployeesPage', () => {
     expect(
       screen.getByRole('heading', { name: /employee dashboard/i })
     ).toBeInTheDocument();
-    expect(screen.getByText('3 employee(s) found')).toBeInTheDocument();
+    expect(screen.getByText('3 employees found')).toBeInTheDocument();
   });
 
   it('renders all employee names in the list', () => {
@@ -88,7 +88,7 @@ describe('EmployeesPage', () => {
     const searchInput = screen.getByPlaceholderText(/search by name or role/i);
     await user.type(searchInput, 'alice');
 
-    expect(screen.getByText('1 employee(s) found')).toBeInTheDocument();
+    expect(screen.getByText('1 employee found')).toBeInTheDocument();
     expect(
       screen.getByRole('link', { name: /alice martin/i })
     ).toBeInTheDocument();
@@ -104,7 +104,7 @@ describe('EmployeesPage', () => {
     const deptSelect = screen.getByDisplayValue('All Departments');
     await user.selectOptions(deptSelect, 'Design');
 
-    expect(screen.getByText('1 employee(s) found')).toBeInTheDocument();
+    expect(screen.getByText('1 employee found')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /bob lee/i })).toBeInTheDocument();
     expect(
       screen.queryByRole('link', { name: /alice martin/i })
@@ -118,7 +118,7 @@ describe('EmployeesPage', () => {
     const searchInput = screen.getByPlaceholderText(/search by name or role/i);
     await user.type(searchInput, 'zzzzz');
 
-    expect(screen.getByText('0 employee(s) found')).toBeInTheDocument();
+    expect(screen.getByText('0 employees found')).toBeInTheDocument();
     expect(screen.getByText(/no employees found/i)).toBeInTheDocument();
   });
 });

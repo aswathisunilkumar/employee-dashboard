@@ -9,7 +9,7 @@ A modern, responsive, and accessible dashboard for managing employee records and
 - **Smart Filtering**:
   - Real-time search by name or role.
   - Filter by department (Engineering, Design, Product, etc.).
-  - Sort by Name, Join Date, or Role (Ascending/Descending).
+  - Sort by Name, Department, or Role (Ascending/Descending).
 - **Data Visualization**:
   - Interactive bar charts showing leave balances (Annual, Sick, Used) powered by `Recharts`.
   - Accessible charts with ARIA labels for screen readers.

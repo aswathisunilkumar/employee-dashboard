@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { EmployeesPage } from './pages/EmployeesPage';
 import { EmployeeDetailPage } from './pages/EmployeeDetailPage';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 const App = () => {
   return (
@@ -12,11 +13,17 @@ const App = () => {
         Skip to main content
       </a>
       <main id="main-content">
-        <Routes>
-          <Route path="/" element={<EmployeesPage />} />
-          <Route path="/employees/:id" element={<EmployeeDetailPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <ErrorBoundary>
+          <Routes>
+            <Route path="/" element={<EmployeesPage />} />
+            <Route path="/employees/:id" element={<EmployeeDetailPage />} />
+            <Route
+              path="*"
+              element={<Navigate to="/" replace />}
+              key="catch-all"
+            />
+          </Routes>
+        </ErrorBoundary>
       </main>
     </div>
   );

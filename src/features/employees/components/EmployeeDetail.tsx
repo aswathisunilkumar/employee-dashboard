@@ -1,5 +1,5 @@
 import type { Employee } from '../types/employee';
-import LeaveChart from './LeaveChart';
+import { LeaveChart } from './LeaveChart';
 
 interface EmployeeDetailProps {
   employee: Employee;
@@ -35,7 +35,11 @@ export const EmployeeDetail = ({ employee }: EmployeeDetailProps) => {
           Join Date
         </dt>
         <dd className="text-[var(--color-text-primary)]">
-          {employee.joinDate}
+          {new Date(employee.joinDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
         </dd>
 
         <dt className="font-medium text-[var(--color-text-secondary)]">

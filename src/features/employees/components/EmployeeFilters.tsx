@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import type { SortField } from '../hooks/useEmployeeFilters';
+import type { SortOrder } from '../../../types/common';
 
 interface EmployeeFiltersProps {
   searchQuery: string;
@@ -9,70 +10,70 @@ interface EmployeeFiltersProps {
   departments: string[];
   sortField: SortField;
   onSortFieldChange: (field: SortField) => void;
-  sortOrder: 'asc' | 'desc';
+  sortOrder: SortOrder;
   onToggleSortOrder: () => void;
 }
 
 /** Filter controls for the employee list. */
-const EmployeeFilters = ({
-  searchQuery,
-  onSearchChange,
-  department,
-  onDepartmentChange,
-  departments,
-  sortField,
-  onSortFieldChange,
-  sortOrder,
-  onToggleSortOrder,
-}: EmployeeFiltersProps) => {
-  const inputClasses =
-    'rounded border border-[var(--color-border-light)] px-3 py-2 text-sm';
+export const EmployeeFilters = memo(
+  ({
+    searchQuery,
+    onSearchChange,
+    department,
+    onDepartmentChange,
+    departments,
+    sortField,
+    onSortFieldChange,
+    sortOrder,
+    onToggleSortOrder,
+  }: EmployeeFiltersProps) => {
+    const inputClasses =
+      'rounded border border-[var(--color-border-light)] px-3 py-2 text-sm';
 
-  return (
-    <div className="flex flex-wrap items-center gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4 shadow-sm">
-      <input
-        type="text"
-        aria-label="Search employees"
-        placeholder="Search by name or role…"
-        value={searchQuery}
-        onChange={(e) => onSearchChange(e.target.value)}
-        className={`${inputClasses} min-w-[180px] flex-1`}
-      />
+    return (
+      <div className="flex flex-wrap items-center gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4 shadow-sm">
+        <input
+          type="text"
+          aria-label="Search employees"
+          placeholder="Search by name or role…"
+          value={searchQuery}
+          onChange={(e) => onSearchChange(e.target.value)}
+          className={`${inputClasses} min-w-[180px] flex-1`}
+        />
 
-      <select
-        aria-label="Filter by department"
-        value={department}
-        onChange={(e) => onDepartmentChange(e.target.value)}
-        className={inputClasses}
-      >
-        <option value="">All Departments</option>
-        {departments.map((dept) => (
-          <option key={dept} value={dept}>
-            {dept}
-          </option>
-        ))}
-      </select>
+        <select
+          aria-label="Filter by department"
+          value={department}
+          onChange={(e) => onDepartmentChange(e.target.value)}
+          className={inputClasses}
+        >
+          <option value="">All Departments</option>
+          {departments.map((dept) => (
+            <option key={dept} value={dept}>
+              {dept}
+            </option>
+          ))}
+        </select>
 
-      <select
-        aria-label="Sort by"
-        value={sortField}
-        onChange={(e) => onSortFieldChange(e.target.value as SortField)}
-        className={inputClasses}
-      >
-        <option value="name">Sort by Name</option>
-        <option value="department">Sort by Department</option>
-        <option value="role">Sort by Role</option>
-      </select>
+        <select
+          aria-label="Sort by"
+          value={sortField}
+          onChange={(e) => onSortFieldChange(e.target.value as SortField)}
+          className={inputClasses}
+        >
+          <option value="name">Sort by Name</option>
+          <option value="department">Sort by Department</option>
+          <option value="role">Sort by Role</option>
+        </select>
 
-      <button
-        aria-label="Toggle sort order"
-        onClick={onToggleSortOrder}
-        className="rounded-lg border border-[var(--color-border-light)] bg-[var(--color-bg-card)] px-3 py-2 text-sm font-medium transition-colors hover:border-[var(--color-primary-border)] hover:bg-[var(--color-primary-light)] hover:text-[var(--color-primary)]"
-      >
-        {sortOrder === 'asc' ? '↑ Asc' : '↓ Desc'}
-      </button>
-    </div>
-  );
-};
-
-export default memo(EmployeeFilters);
+        <button
+          aria-label="Toggle sort order"
+          onClick={onToggleSortOrder}
+          className="rounded-lg border border-[var(--color-border-light)] bg-[var(--color-bg-card)] px-3 py-2 text-sm font-medium transition-colors hover:border-[var(--color-primary-border)] hover:bg-[var(--color-primary-light)] hover:text-[var(--color-primary)]"
+        >
+          {sortOrder === 'asc' ? '↑ Asc' : '↓ Desc'}
+        </button>
+      </div>
+    );
+  }
+);

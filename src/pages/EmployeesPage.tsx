@@ -1,7 +1,7 @@
 import { useEmployees } from '../features/employees/hooks/useEmployees';
 import { useEmployeeFilters } from '../features/employees/hooks/useEmployeeFilters';
-import EmployeeList from '../features/employees/components/EmployeeList';
-import EmployeeFilters from '../features/employees/components/EmployeeFilters';
+import { EmployeeList } from '../features/employees/components/EmployeeList';
+import { EmployeeFilters } from '../features/employees/components/EmployeeFilters';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { ErrorMessage } from '../components/ErrorMessage';
 
@@ -54,7 +54,8 @@ export const EmployeesPage = () => {
 
       <div className="mt-4 flex items-center justify-between">
         <p className="text-sm font-medium text-[var(--color-text-secondary)]">
-          {filteredEmployees.length} employee(s) found
+          {filteredEmployees.length}{' '}
+          {filteredEmployees.length === 1 ? 'employee' : 'employees'} found
         </p>
       </div>
 

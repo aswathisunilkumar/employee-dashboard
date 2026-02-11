@@ -7,9 +7,10 @@ export function useEmployee(id: number) {
   const [employee, setEmployee] = useState<Employee | undefined>();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
   const [prevId, setPrevId] = useState(id);
 
-  // reset state during render if ID changes
+  // Reset state during render if ID changes (avoids cascading renders)
   if (id !== prevId) {
     setPrevId(id);
     setIsLoading(true);

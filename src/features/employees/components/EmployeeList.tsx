@@ -6,7 +6,7 @@ interface EmployeeListProps {
   employees: Employee[];
 }
 
-const EmployeeList = ({ employees }: EmployeeListProps) => {
+export const EmployeeList = memo(({ employees }: EmployeeListProps) => {
   if (employees.length === 0) {
     return (
       <div className="mt-8 rounded-lg border border-dashed border-[var(--color-border-dashed)] py-12 text-center">
@@ -42,6 +42,4 @@ const EmployeeList = ({ employees }: EmployeeListProps) => {
       ))}
     </ul>
   );
-};
-
-export default memo(EmployeeList);
+});

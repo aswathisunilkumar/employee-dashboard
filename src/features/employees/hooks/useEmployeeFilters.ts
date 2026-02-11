@@ -1,9 +1,8 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useDeferredValue, useMemo, useState } from 'react';
 import type { Employee } from '../types/employee';
 import type { SortOrder } from '../../../types/common';
 
 export type SortField = 'name' | 'department' | 'role';
-export type { SortOrder };
 
 export function useEmployeeFilters(employees: Employee[]) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -23,12 +22,14 @@ export function useEmployeeFilters(employees: Employee[]) {
   }, []);
 
   // Derive the filtered + sorted list
+  const deferredSearchQuery = useDeferredValue(searchQuery);
+
   const filteredEmployees = useMemo(() => {
     let result = employees;
 
     // 1. Filter by search query (name or role)
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase();
+    if (deferredSearchQuery) {
+      const q = deferredSearchQuery.toLowerCase();
       result = result.filter(
         (emp) =>
           emp.firstName.toLowerCase().includes(q) ||
@@ -62,7 +63,7 @@ export function useEmployeeFilters(employees: Employee[]) {
     });
 
     return sorted;
-  }, [employees, searchQuery, department, sortField, sortOrder]);
+  }, [employees, deferredSearchQuery, department, sortField, sortOrder]);
 
   return {
     filteredEmployees,
