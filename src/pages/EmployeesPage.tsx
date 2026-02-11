@@ -4,12 +4,14 @@ import { EmployeeList } from '../features/employees/components/EmployeeList';
 import { EmployeeFilters } from '../features/employees/components/EmployeeFilters';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { ErrorMessage } from '../components/ErrorMessage';
-
 import { useEffect } from 'react';
 
 export const EmployeesPage = () => {
   useEffect(() => {
     document.title = 'Employee Dashboard';
+    return () => {
+      document.title = 'Employee Dashboard';
+    };
   }, []);
 
   const { employees, isLoading, error } = useEmployees();
@@ -27,7 +29,12 @@ export const EmployeesPage = () => {
   } = useEmployeeFilters(employees);
 
   if (isLoading) return <LoadingSpinner message="Loading employees…" />;
-  if (error) return <ErrorMessage message={error} />;
+  if (error)
+    return (
+      <div>
+        <ErrorMessage message={error} />
+      </div>
+    );
 
   return (
     <div>
@@ -53,7 +60,10 @@ export const EmployeesPage = () => {
       />
 
       <div className="mt-4 flex items-center justify-between">
-        <p className="text-sm font-medium text-[var(--color-text-secondary)]">
+        <p
+          aria-live="polite"
+          className="text-sm font-medium text-[var(--color-text-secondary)]"
+        >
           {filteredEmployees.length}{' '}
           {filteredEmployees.length === 1 ? 'employee' : 'employees'} found
         </p>

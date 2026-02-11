@@ -23,7 +23,10 @@ export const LeaveChart = memo(({ leaveBalance }: LeaveChartProps) => {
       { label: 'Used', days: leaveBalance.used },
       {
         label: 'Remaining',
-        days: leaveBalance.annual + leaveBalance.sick - leaveBalance.used,
+        days: Math.max(
+          0,
+          leaveBalance.annual + leaveBalance.sick - leaveBalance.used
+        ),
       },
     ],
     [leaveBalance]

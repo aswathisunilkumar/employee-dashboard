@@ -1,3 +1,6 @@
+/** ISO 8601 date string in YYYY-MM-DD format (e.g. "2021-03-15") */
+export type ISODateString = string;
+
 export interface Employee {
   id: number;
   firstName: string;
@@ -5,7 +8,7 @@ export interface Employee {
   email: string;
   department: string;
   role: string;
-  joinDate: string; // ISO date string
+  joinDate: ISODateString;
   skills: string[];
   leaveBalance: {
     annual: number;

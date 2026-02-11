@@ -17,11 +17,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<EmployeesPage />} />
             <Route path="/employees/:id" element={<EmployeeDetailPage />} />
-            <Route
-              path="*"
-              element={<Navigate to="/" replace />}
-              key="catch-all"
-            />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </ErrorBoundary>
       </main>

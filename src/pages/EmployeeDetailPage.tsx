@@ -3,12 +3,16 @@ import { useEmployee } from '../features/employees/hooks/useEmployee';
 import { EmployeeDetail } from '../features/employees/components/EmployeeDetail';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { ErrorMessage } from '../components/ErrorMessage';
-
 import { useEffect } from 'react';
 
 export const EmployeeDetailPage = () => {
   const { id } = useParams<{ id: string }>();
-  const { employee, isLoading, error } = useEmployee(Number(id));
+  const employeeId = Number(id);
+  const isValidId = Number.isFinite(employeeId) && employeeId > 0;
+
+  const { employee, isLoading, error } = useEmployee(
+    isValidId ? employeeId : -1
+  );
 
   useEffect(() => {
     if (employee) {
@@ -16,7 +20,16 @@ export const EmployeeDetailPage = () => {
     } else {
       document.title = 'Employee Details';
     }
+    return () => {
+      document.title = 'Employee Dashboard';
+    };
   }, [employee]);
+
+  if (!isValidId) {
+    return (
+      <ErrorMessage message="Invalid employee ID provided. Please check the URL." />
+    );
+  }
 
   if (isLoading) return <LoadingSpinner message="Loading employee…" />;
   if (error) return <ErrorMessage message={error} />;
